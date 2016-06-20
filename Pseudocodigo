@@ -1,0 +1,10 @@
+PSEUDOCÓDIGO.
+
+1.- GET question from CSV con un reader foreach,X
+2.- ASK question to user,X
+3.- GET asnwer form user with gets.chomp,
+4.- COMPARE user answer with correct answer.
+5.- DISPLAY either "correct!" or "incorrect!".
+6.- END game once you've ended up the cards (questions).
+
+
