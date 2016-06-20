@@ -11,33 +11,53 @@ class Carta
 end
 
 class List
+
+  attr_reader :lista
   
   def initialize
     @lista = []
-    index
-    @i = -1
+    @correctas_cont = 0
+    @incorrectas_cont = 0
   end
 
-  def index
+  def index(caso)
+    case caso
+    when "1"
     CSV.foreach("Preguntas.csv") do |pregunta|
       @lista << Carta.new(pregunta[0],pregunta[1])
     end
     @lista
+    when "2"
+    CSV.foreach("Matematicas.csv") do |pregunta|
+      @lista << Carta.new(pregunta[0],pregunta[1])
+    end
+    @lista
+  end
   end
 
   def mostrar_pregunta(num_pregunta) ##falta que se haga un loop
-    @i += 1
+
     nueva_pregunta = @lista[num_pregunta].pregunta
     nueva_pregunta
   end
 
   def comparar_respuesta(num_carta, user_answer)
     if user_answer == @lista[num_carta].respuesta
-      "Correcto!"
+          @correctas_cont += 1   
+          "Correcto!"  
+    
     else
+      @incorrectas_cont += 1
       "Incorrecto!"
     end
   end
+
+  def cuenta_final
+    [@correctas_cont, @incorrectas_cont]
+  end
+
+
+
 
   # def ultima_pregunta
   #   if pregunta
